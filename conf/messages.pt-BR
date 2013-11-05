@@ -1,0 +1,8 @@
+tasks=TAREFAS
+delete=DELETAR
+addTask=ADICIONAR NOVA TAREFA
+label=RÓTULO
+project=PROJETO
+create=CRIAR
+error.required=OBRIGATÓRIO
+constraint.required=

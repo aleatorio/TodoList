@@ -2,6 +2,7 @@ package controllers;
 
 import models.Task;
 import play.data.Form;
+import play.i18n.Lang;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -10,6 +11,9 @@ public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class);
 
 	public static Result index() {
+		System.err.println(Lang.availables());
+		System.err.println(Lang.defaultLang());
+		System.err.println(play.i18n.Messages.get(Lang.defaultLang(), "create"));
 		return ok(views.html.index.render(Task.all(), taskForm));
 	}
 

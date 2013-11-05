@@ -14,12 +14,38 @@ public class Task extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	public Long id;
+	private Long id;
+	
+	@Required()
+	private String label;
+	
+	private String project;
 
-	@Required
-	public String label;
+	public String getProject(){
+		return project;
+	}
 
-	public static Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
+	public void setProject(String project) {
+		this.project = project;
+	}
+
+	private static Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 	public static List<Task> all() {
 		return find.all();

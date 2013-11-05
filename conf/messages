@@ -1,0 +1,8 @@
+tasks=TASKS
+delete=DELETE
+addTask=ADD A NEW TASK
+label=LABEL
+project=PROJECT
+create=CREATE
+error.required=Required
+constraint.required=
