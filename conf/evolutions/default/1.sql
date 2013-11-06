@@ -4,13 +4,10 @@
 # --- !Ups
 
 create table task (
-  id                        bigint not null,
+  id                        integer,
   label                     varchar(255),
-  project                   varchar(255),
-  constraint pk_task primary key (id))
+  project                   varchar(255))
 ;
-
-create sequence task_seq;
 
 
 
@@ -22,6 +19,4 @@ SET REFERENTIAL_INTEGRITY FALSE;
 drop table if exists task;
 
 SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists task_seq;
 

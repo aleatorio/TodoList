@@ -12,7 +12,7 @@
 				@Messages("label"): @task.getLabel(),
 				@Messages("project"): @task.getProject()
 				
-				@form(routes.Application.deleteTask(task.getId())) {
+				@form(routes.Application.deleteTask(task.hashCode())) {
 					<input type="submit" value=@Messages("delete")>
 				}
 			</li>

@@ -1,42 +1,58 @@
 package models;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
 
-@Entity
-public class Task extends Model {
+public class Task{
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	private Long id;
-	
-	@Required()
+	@Required
 	private String label;
-	
-	private String project;
 
-	public String getProject(){
+	private String project;
+	
+	public Task(){}
+
+	public Task(String label, String project) {
+		this.label = label;
+		this.project = project;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((project == null) ? 0 : project.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (label == null) {
+			if (other.label != null)
+				return false;
+		} else if (!label.equals(other.label))
+			return false;
+		if (project == null) {
+			if (other.project != null)
+				return false;
+		} else if (!project.equals(other.project))
+			return false;
+		return true;
+	}
+
+	public String getProject() {
 		return project;
 	}
 
 	public void setProject(String project) {
 		this.project = project;
-	}
-
-	private static Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getLabel() {
@@ -46,17 +62,4 @@ public class Task extends Model {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
-	public static List<Task> all() {
-		return find.all();
-	}
-
-	public static void create(Task task) {
-		task.save();
-	}
-
-	public static void delete(Long id) {
-		find.ref(id).delete();
-	}
-
 }

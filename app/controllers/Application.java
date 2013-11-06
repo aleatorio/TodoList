@@ -1,38 +1,51 @@
 package controllers;
 
 import models.Task;
+import models.services.TaskService;
 import play.data.Form;
-import play.i18n.Lang;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 public class Application extends Controller {
 
-	static Form<Task> taskForm = Form.form(Task.class);
+	private static Form<Task> taskForm = Form.form(Task.class);
 
 	public static Result index() {
-		System.err.println(Lang.availables());
-		System.err.println(Lang.defaultLang());
-		System.err.println(play.i18n.Messages.get(Lang.defaultLang(), "create"));
-		return ok(views.html.index.render(Task.all(), taskForm));
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		
+		System.err.println("=============");
+		System.err.println("=============");
+		
+		System.err.println("=============");
+		System.err.println("=============");
+		System.err.println("=============");
+		return ok(views.html.index.render(TaskService.getInstance().all(), taskForm));
 	}
 
 	public static Result tasks() {
-		return ok(views.html.index.render(Task.all(), taskForm));
+		return ok(views.html.index.render(TaskService.getInstance().all(), taskForm));
 	}
 
 	public static Result newTask() {
 		Form<Task> filledForm = taskForm.bindFromRequest();
 		if (filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(Task.all(), filledForm));
+			return badRequest(views.html.index.render(TaskService.getInstance().all(), filledForm));
 		} else {
-			Task.create(filledForm.get());
+			TaskService.getInstance().create(filledForm.get());
 			return redirect(routes.Application.tasks());
 		}
 	}
 
-	public static Result deleteTask(Long id) {
-		Task.delete(id);
+	public static Result deleteTask(Integer hash) {
+		TaskService.getInstance().remove(hash);
 		return redirect(routes.Application.tasks());
 	}
 
