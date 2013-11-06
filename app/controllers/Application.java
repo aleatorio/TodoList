@@ -11,22 +11,6 @@ public class Application extends Controller {
 	private static Form<Task> taskForm = Form.form(Task.class);
 
 	public static Result index() {
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
-		
-		System.err.println("=============");
-		System.err.println("=============");
-		
-		System.err.println("=============");
-		System.err.println("=============");
-		System.err.println("=============");
 		return ok(views.html.index.render(TaskService.getInstance().all(), taskForm));
 	}
 
